@@ -6,13 +6,13 @@ const root = ReactDOM.createRoot(rootElement);
 // const headerElement = React.createElement('header', {}, headingElement, secondHeadingElement);
 // Use JSX Syntax 
 
-function Heading(prop) {
-    return <h1 className="heading">Hello from React!</h1>
+function Heading(props) {
+    return <h1 className="heading">{props.firstWord} from {props.title}!</h1>
 }
 
 const headerElement = (
     <div>
-        <Heading />
+        <Heading firstWord= "hello" title="React"/>
         <header className="header-container">
             <h2>Slogan here</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis consequuntur architecto dolorum sit quidem tenetur doloremque aspernatur reprehenderit ratione sed!</p>
