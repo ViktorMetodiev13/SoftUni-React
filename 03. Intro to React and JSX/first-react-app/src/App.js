@@ -1,3 +1,4 @@
+import Counter from "./components/Counter";
 import Description from "./components/Description";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -24,6 +25,8 @@ export default function App() {
       <Schedule />
 
       <Footer />
+
+      <Counter />
     </div>
   );
 }
