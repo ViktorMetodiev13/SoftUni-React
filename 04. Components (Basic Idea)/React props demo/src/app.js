@@ -1,25 +1,17 @@
-const rootElement = document.getElementById('root');
-const root = ReactDOM.createRoot(rootElement);
+import Counter from "./components/Counter";
+import Description from "./components/Description";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
+import Schedule from "./components/Schedule";
+import Speakers from "./components/Speakers";
+import Tickets from "./components/Tickets";
 
-// const headingElement = React.createElement('h1', {}, 'Hello from React!');
-// const secondHeadingElement = React.createElement('h2', {}, 'Some slogan here');
-// const headerElement = React.createElement('header', {}, headingElement, secondHeadingElement);
-// Use JSX Syntax 
 
-function Heading(props) {
-    return <h1 className="heading">{props.firstWord} from {props.title}!</h1>
-}
-
-const headerElement = (
+export default function App() {
+  return (
     <div>
-        <Heading firstWord= "hello" title="React"/>
-        <header className="header-container">
-            <h2>Slogan here</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis consequuntur architecto dolorum sit quidem tenetur doloremque aspernatur reprehenderit ratione sed!</p>
-        </header>
-
-        <button>Click</button>
+      <Counter />
     </div>
-);
-
-root.render(headerElement);
+  );
+}
