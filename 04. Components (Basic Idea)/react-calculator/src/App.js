@@ -6,6 +6,7 @@ function App() {
 
   const handlerClick = (e) => {
     setResult(result.concat(e.target.id));
+    console.log((result.concat(e.target.id)));
   };
 
   function clear() {
@@ -37,12 +38,12 @@ function App() {
         <button id="7" className="number" onClick={handlerClick}>7</button>
         <button id="8" className="number" onClick={handlerClick}>8</button>
         <button id="9" className="number" onClick={handlerClick}>9</button>
-        <button id="*" className="operator" onClick={handlerClick}>X</button>
+        <button id="x" className="operator" onClick={handlerClick}>X</button>
 
-        <button id="4" className="number" onClick={handlerClick}>7</button>
-        <button id="5" className="number" onClick={handlerClick}>8</button>
-        <button id="6" className="number" onClick={handlerClick}>9</button>
-        <button id="-" className="operator" onClick={handlerClick}>X</button>
+        <button id="4" className="number" onClick={handlerClick}>4</button>
+        <button id="5" className="number" onClick={handlerClick}>5</button>
+        <button id="6" className="number" onClick={handlerClick}>6</button>
+        <button id="-" className="operator" onClick={handlerClick}>-</button>
 
         <button id="1" className="number" onClick={handlerClick}>1</button>
         <button id="2" className="number" onClick={handlerClick}>2</button>
@@ -53,7 +54,6 @@ function App() {
         <button id="0" className="number" onClick={handlerClick}>0</button>
         <button id="=" className="operator col-span-2" onClick={calculate}>=</button>
       </div>
-
     </div>
   );
 }
