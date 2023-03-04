@@ -38,7 +38,7 @@ function App() {
         <button id="7" className="number" onClick={handlerClick}>7</button>
         <button id="8" className="number" onClick={handlerClick}>8</button>
         <button id="9" className="number" onClick={handlerClick}>9</button>
-        <button id="x" className="operator" onClick={handlerClick}>X</button>
+        <button id="*" className="operator" onClick={handlerClick}>X</button>
 
         <button id="4" className="number" onClick={handlerClick}>4</button>
         <button id="5" className="number" onClick={handlerClick}>5</button>

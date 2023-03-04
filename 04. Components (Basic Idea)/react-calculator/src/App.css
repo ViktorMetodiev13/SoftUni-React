@@ -45,6 +45,24 @@
 
 @layer components {
   body {
-    @apply bg-[#219ebc]
+    @apply bg-[#219ebc];
+  }
+  .calculator {
+    @apply bg-[#023047] w-80 mx-auto mt-10 p-4 rounded-lg shadow-lg;
+  }
+  input {
+    @apply w-full text-right py-1 px-5 text-2x1 bg-transparent text-white;
+  }
+  .buttons {
+    @apply grid grid-cols-4 gap-y-4 gap-x-3 mt-4;
+  }
+  button {
+    /* @apply transition duration-300 active:-translate-y-1 text-x1; */
+  }
+  .number {
+    @apply bg-gray-200 text-gray-700 rounded-lg p-2;
+  }
+  .operator {
+    @apply bg-[#2193bc] text-white rounded-lg p-2;
   }
 }
