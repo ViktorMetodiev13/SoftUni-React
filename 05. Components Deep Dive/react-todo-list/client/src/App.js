@@ -1,10 +1,19 @@
-import "./App.css";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import Loading from "./Components/Loading";
-import Table from "./Components/Table";
+import { useEffect, useState } from "react";
+import TodoList from "./Components/TodoList";
 
 function App() {
+  const [todos, setTodos] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:3030/jsonstore/todos`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTodos(Object.values(data));
+      });
+  });
+
   return (
     <div>
       <Header />
@@ -20,7 +29,7 @@ function App() {
           <div className="table-wrapper">
             {/* <Loading /> */}
 
-            <Table />
+            <TodoList todos={todos} />
           </div>
         </section>
       </main>
