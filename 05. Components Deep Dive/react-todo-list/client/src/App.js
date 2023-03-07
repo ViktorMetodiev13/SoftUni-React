@@ -7,12 +7,17 @@ import TodoList from "./Components/TodoList";
 function App() {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:3030/jsonstore/todos`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTodos(Object.values(data));
-      });
+    // fetch(`http://localhost:3030/jsonstore/todos`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     const result = Object.keys(data).map((id) => ({ id, ...data[id] }));
+    //     setTodos(result);
+    //   });
   });
+
+  const toggleTodoStatus = (id) => {
+    setTodos((state) => state.map((t) => t.id === id ? ({ ...t, isCompleted: !t.isCompleted }) : t));
+  };
 
   return (
     <div>
@@ -29,7 +34,7 @@ function App() {
           <div className="table-wrapper">
             {/* <Loading /> */}
 
-            <TodoList todos={todos} />
+            <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
           </div>
         </section>
       </main>
