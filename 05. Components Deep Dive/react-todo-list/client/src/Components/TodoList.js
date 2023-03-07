@@ -12,7 +12,7 @@ export default function TodoList({
       </thead>
       <tbody>
         {todos.map((todo) => (
-          <tr className="todo is-completed">
+          <tr className={`todo ${todo.isCompleted ? 'is-completed' : ''}`.trim()}>
             <td>{todo.text}</td>
             <td>{todo.isCompleted ? 'Complete' : 'Not Complete'}</td>
             <td className="todo-action">
