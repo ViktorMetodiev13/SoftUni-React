@@ -6,6 +6,7 @@ import TodoList from "./Components/TodoList";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetch(`http://localhost:3030/jsonstore/todos`)
       .then((res) => res.json())
@@ -46,9 +47,14 @@ function App() {
           </div>
 
           <div className="table-wrapper">
-            {/* <Loading /> */}
+            {isLoading
+                ? <Loading />
+                : <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
+            }
 
             <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
+
+
           </div>
         </section>
       </main>
