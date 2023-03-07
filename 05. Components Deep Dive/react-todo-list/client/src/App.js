@@ -1,16 +1,12 @@
 import "./App.css";
-
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import Loading from "./Components/Loading";
 
 function App() {
   return (
     <div>
-      <header className="navigation-header">
-        <span className="navigation-logo">
-          <img src="/images/todo-icon.png" alt="todo-logo" />
-        </span>
-        <span className="spacer"></span>
-        <span className="navigation-description">Todo List</span>
-      </header>
+      <Header />
 
       <main className="main">
         <section className="todo-list-container">
@@ -21,11 +17,7 @@ function App() {
           </div>
 
           <div className="table-wrapper">
-            <div className="loading-container">
-              <div className="loading-spinner">
-                <span className="loading-spinner-text">Loading</span>
-              </div>
-            </div>
+            {/* <Loading /> */}
 
             <table className="table">
               <thead>
@@ -113,9 +105,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <p>Copyright © designed by Mihail Valkov</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
