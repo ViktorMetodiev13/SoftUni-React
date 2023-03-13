@@ -1,4 +1,4 @@
-export const userList = () => {
+export const UserList = () => {
   return (
     <div className="table-wrapper">
       {/* <!-- Overlap components  -->
