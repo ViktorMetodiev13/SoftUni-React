@@ -1,16 +1,23 @@
+const formatDate = (input) => {
+  const date = new Date(input);
+
+  return date.toLocaleDateString(date);
+}
+
 export default function User({
   imageUrl,
   firstName,
   lastName,
   email,
   phoneNumber,
+  createdAt,
 }) {
   return (
     <tr>
       <td>
         <img
-          src="{imageUrl}"
-          alt="{firstName} {lastName}"
+          src={imageUrl}
+          alt={`${firstName} ${lastName}`}
           className="image"
         />
       </td>
@@ -18,7 +25,7 @@ export default function User({
       <td>{lastName}</td>
       <td>{email}</td>
       <td>{phoneNumber}</td>
-      <td>June 28, 2022</td>
+      <td>{formatDate(createdAt)}</td>
 
       <td className="actions">
         <button className="btn edit-btn" title="Edit">
