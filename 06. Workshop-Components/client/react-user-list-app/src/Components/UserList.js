@@ -1,6 +1,8 @@
 import User from "./User";
 
-export const UserList = () => {
+export const UserList = ({
+  users
+}) => {
   return (
     <div className="table-wrapper">
       {/* <!-- Overlap components  -->
@@ -171,8 +173,7 @@ export const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {/* <!-- Table row component --> */}
-          <User />
+          {users.map(u => <User key={u._id} {...u}/>)}
         </tbody>
       </table>
     </div>

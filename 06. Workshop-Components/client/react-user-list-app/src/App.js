@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+
+import * as userService from "./Services/userService";
+
 import "./App.css";
 import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
@@ -5,6 +9,19 @@ import Search from "./Components/Search";
 import { UserList } from "./Components/UserList";
 
 function App() {
+    const [users, setUsers] = useState([]);
+
+  useEffect(function () {
+    userService
+      .getAll()
+      .then((users) => {
+        setUsers(users)
+      })
+      .catch((err) => {
+        console.log("Error from userService " + err);
+      });
+  }, []);
+
   return (
     <>
       <Header />
@@ -14,7 +31,7 @@ function App() {
         <section className="card users-container">
           <Search />
 
-          <UserList />
+          <UserList users={users} />
 
           {/* <!-- New user button  --> */}
           <button className="btn-add btn">Add new user</button>
