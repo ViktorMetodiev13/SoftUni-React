@@ -1,16 +1,12 @@
-import { useState } from "react";
-
-export const UserCreate = () => {
+export const UserCreate = ({ onClose }) => {
   return (
-
-
     <div className="overlay">
       <div className="backdrop"></div>
       <div className="modal">
         <div className="user-container">
           <header className="headers">
             <h2>Edit User/Add User</h2>
-            <button className="btn close" onClick={onclose}>
+            <button className="btn close" onClick={onClose}>
               <svg
                 aria-hidden="true"
                 focusable="false"

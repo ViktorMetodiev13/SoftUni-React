@@ -1,9 +1,23 @@
+import { useState } from "react";
+
 import User from "./User";
 import { UserCreate } from "./UserCreate";
 
 export const UserList = ({ users }) => {
+  const [showAddUser, setShowAddUser] = useState(false);
+
+  const onUserAddClick = () => {
+    setShowAddUser(true);
+  }
+
+  const onClose = () => {
+    setShowAddUser(false);
+  }
+
   return (
     <>
+      {showAddUser && <UserCreate onClose={onClose}/>}
+
       <div className="table-wrapper">
         {/* <!-- Overlap components  -->
 
@@ -74,8 +88,6 @@ export const UserList = ({ users }) => {
               <h2>Failed to fetch</h2>
             </div> -->
         <!-- </div> --> */}
-
-        <UserCreate />
 
         <table className="table">
           <thead>
@@ -182,7 +194,7 @@ export const UserList = ({ users }) => {
         </table>
       </div>
 
-      <button className="btn-add btn">Add new user</button>
+      <button className="btn-add btn" onClick={onUserAddClick}>Add new user</button>
     </>
   );
 };
