@@ -7,6 +7,13 @@ export async function getAll() {
     return result.users;
 }
 
+export async function getOne(userId) {
+    let response = await fetch(`${baseUrl}/${userId}`);
+    let result = await response.json();
+
+    return result.user;
+}
+
 export async function create(userData) {
     const { country, city, street, streetNumber, ...data } = userData;
     data.address = {

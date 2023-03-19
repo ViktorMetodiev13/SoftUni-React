@@ -1,19 +1,30 @@
 import { useState } from "react";
 
+import * as userService from "../Services/userService";
+
 import User from "./User";
 import { UserCreate } from "./UserCreate";
+import { UserDetails } from "./UserDetails";
 
-export const UserList = ({ 
-  users,  
+export const UserList = ({
+  users,
   onUserCreateSubmit,
 }) => {
   const [showAddUser, setShowAddUser] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const onInfoClick = async (userId) => {
+    const user = await userService.getOne(userId);
+
+    setSelectedUser(user)
+  };
 
   const onUserAddClick = () => {
     setShowAddUser(true);
   }
 
   const onClose = () => {
+    setSelectedUser(null);
     setShowAddUser(false);
   }
 
@@ -24,7 +35,8 @@ export const UserList = ({
 
   return (
     <>
-      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmitHandler}/>}
+      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmit} onUserCreateSubmitHandler={onUserCreateSubmitHandler} />}
+      {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
 
       <div className="table-wrapper">
         {/* <!-- Overlap components  -->
@@ -196,7 +208,7 @@ export const UserList = ({
           </thead>
           <tbody>
             {users.map((u) => (
-              <User key={u._id} {...u} />
+              <User key={u._id} {...u} onInfoClick={onInfoClick} />
             ))}
           </tbody>
         </table>
