@@ -22,14 +22,15 @@ function App() {
       });
   }, []);
 
-  const onUserCreateSubmit = (e) => {
+  const onUserCreateSubmit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
     const data = Object.fromEntries(formData);
 
-    userService.createUser(data);
+    const createdUser = await userService.create(data);
+
+    setUsers(state => [...state, createdUser]);
   }
 
   return (

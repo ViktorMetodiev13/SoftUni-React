@@ -17,9 +17,14 @@ export const UserList = ({
     setShowAddUser(false);
   }
 
+  const onUserCreateSubmitHandler = (e) => {
+    onUserCreateSubmit(e);
+    setShowAddUser(false);
+  }
+
   return (
     <>
-      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmit}/>}
+      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmitHandler}/>}
 
       <div className="table-wrapper">
         {/* <!-- Overlap components  -->

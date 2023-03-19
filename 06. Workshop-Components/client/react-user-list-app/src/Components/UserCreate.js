@@ -1,6 +1,7 @@
 export const UserCreate = ({ 
   onClose, 
-  onUserCreateSubmit 
+  onUserCreateSubmit,
+  onUserCreateSubmitHandler
 }) => {
   return (
     <div className="overlay">
@@ -30,7 +31,7 @@ export const UserCreate = ({
           <form onSubmit={onUserCreateSubmit}>
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="firstName">First name</label>
+                <label htmlhtmlFor="firstName">First name</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-user"></i>
@@ -42,7 +43,7 @@ export const UserCreate = ({
                 </p>
               </div>
               <div className="form-group">
-                <label htmlFor="lastName">Last name</label>
+                <label htmlhtmlFor="lastName">Last name</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-user"></i>
@@ -57,7 +58,7 @@ export const UserCreate = ({
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlhtmlFor="email">Email</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-envelope"></i>
@@ -67,7 +68,7 @@ export const UserCreate = ({
                 <p className="form-error">Email is not valid!</p>
               </div>
               <div className="form-group">
-                <label htmlFor="phoneNumber">Phone number</label>
+                <label htmlhtmlFor="phoneNumber">Phone number</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-phone"></i>
@@ -79,7 +80,7 @@ export const UserCreate = ({
             </div>
 
             <div className="form-group long-line">
-              <label htmlFor="imageUrl">Image Url</label>
+              <label htmlhtmlFor="imageUrl">Image Url</label>
               <div className="input-wrapper">
                 <span>
                   <i className="fa-solid fa-image"></i>
@@ -91,7 +92,7 @@ export const UserCreate = ({
 
             <div className="form-row">
               <div className="form-group">
-                <label for="country">Country</label>
+                <label htmlFor="country">Country</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-map"></i>
@@ -103,7 +104,7 @@ export const UserCreate = ({
                 </p>
               </div>
               <div className="form-group">
-                <label for="city">City</label>
+                <label htmlFor="city">City</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-city"></i>
@@ -118,7 +119,7 @@ export const UserCreate = ({
 
             <div className="form-row">
               <div className="form-group">
-                <label for="street">Street</label>
+                <label htmlFor="street">Street</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-map"></i>
@@ -130,7 +131,7 @@ export const UserCreate = ({
                 </p>
               </div>
               <div className="form-group">
-                <label for="streetNumber">Street number</label>
+                <label htmlFor="streetNumber">Street number</label>
                 <div className="input-wrapper">
                   <span>
                     <i className="fa-solid fa-house-chimney"></i>
@@ -143,7 +144,7 @@ export const UserCreate = ({
               </div>
             </div>
             <div id="form-actions">
-              <button id="action-save" className="btn" type="submit">
+              <button id="action-save" className="btn" type="submit" onClick={onUserCreateSubmitHandler}>
                 Save
               </button>
               <button id="action-cancel" className="btn" type="button" onClick={onClose}>
