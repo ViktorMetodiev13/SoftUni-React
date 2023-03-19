@@ -1,4 +1,7 @@
-export const UserCreate = ({ onClose }) => {
+export const UserCreate = ({ 
+  onClose, 
+  onUserCreateSubmit 
+}) => {
   return (
     <div className="overlay">
       <div className="backdrop"></div>
@@ -24,7 +27,7 @@ export const UserCreate = ({ onClose }) => {
               </svg>
             </button>
           </header>
-          <form>
+          <form onSubmit={onUserCreateSubmit}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName">First name</label>
@@ -143,7 +146,7 @@ export const UserCreate = ({ onClose }) => {
               <button id="action-save" className="btn" type="submit">
                 Save
               </button>
-              <button id="action-cancel" className="btn" type="button">
+              <button id="action-cancel" className="btn" type="button" onClick={onClose}>
                 Cancel
               </button>
             </div>

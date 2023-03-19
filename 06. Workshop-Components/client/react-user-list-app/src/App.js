@@ -22,6 +22,16 @@ function App() {
       });
   }, []);
 
+  const onUserCreateSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+
+    const data = Object.fromEntries(formData);
+
+    userService.createUser(data);
+  }
+
   return (
     <>
       <Header />
@@ -30,7 +40,7 @@ function App() {
         <section className="card users-container">
           <Search />
 
-          <UserList users={users} />
+          <UserList users={users} onUserCreateSubmit={onUserCreateSubmit}/>
 
           {/* <!-- Pagination component  --> */}
           <div className="pagination position">

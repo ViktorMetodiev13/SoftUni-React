@@ -3,7 +3,10 @@ import { useState } from "react";
 import User from "./User";
 import { UserCreate } from "./UserCreate";
 
-export const UserList = ({ users }) => {
+export const UserList = ({ 
+  users,  
+  onUserCreateSubmit,
+}) => {
   const [showAddUser, setShowAddUser] = useState(false);
 
   const onUserAddClick = () => {
@@ -16,7 +19,7 @@ export const UserList = ({ users }) => {
 
   return (
     <>
-      {showAddUser && <UserCreate onClose={onClose}/>}
+      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmit}/>}
 
       <div className="table-wrapper">
         {/* <!-- Overlap components  -->
