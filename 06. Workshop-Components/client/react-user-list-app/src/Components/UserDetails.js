@@ -1,19 +1,19 @@
-import { formatDate } from "../Utils/dateUtils";
+import {formatDate} from '../utils/dateUtils';
 
-export const UserDetails = (
+export const UserDetails = ({
     _id,
     firstName,
     lastName,
     email,
     imageUrl,
     createdAt,
-    phoneNumber,
     updatedAt,
+    phoneNumber,
     address,
     onClose,
-) => {
+}) => {
     return (
-        <div className="overlay">
+        <div className="overlay" >
             <div className="backdrop"></div>
             <div className="modal">
                 <div className="detail-container">
@@ -30,20 +30,19 @@ export const UserDetails = (
                     </header>
                     <div className="content">
                         <div className="image-container">
-                            <img src={imageUrl} alt={`${firstName} ${lastName}`}
-                                className="image" />
+                            <img src={imageUrl} alt={`${firstName} ${lastName}`} className="image" />
                         </div>
                         <div className="user-details">
                             <p>User Id: <strong>{_id}</strong></p>
                             <p>
                                 Full Name:
-                                <strong> {firstName} {lastName} </strong>
+                                <strong> {`${firstName} ${lastName}`} </strong>
                             </p>
                             <p>Email: <strong>{email}</strong></p>
                             <p>Phone Number: <strong>{phoneNumber}</strong></p>
                             <p>
                                 Address:
-                                <strong> {address.country}, {address.city}, {address.street} {address.streetNumber} </strong>
+                                <strong> {`${address.country}, ${address.city}, ${address.street} ${address.streetNumber}`}</strong>
                             </p>
 
                             <p>Created on: <strong>{formatDate(createdAt)}</strong></p>
@@ -52,6 +51,6 @@ export const UserDetails = (
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
+        </div >
+    );
+};

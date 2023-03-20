@@ -1,42 +1,42 @@
 const baseUrl = 'http://localhost:3005/api/users';
 
-export async function getAll() {
-    let response = await fetch(baseUrl);
-    let result = await response.json();
+export const getAll = async () => {
+    const response = await fetch(baseUrl);
+    const result = await response.json();
 
     return result.users;
-}
+};
 
-export async function getOne(userId) {
-    let response = await fetch(`${baseUrl}/${userId}`);
-    let result = await response.json();
+export const getOne = async (userId) => {
+    const response = await fetch(`${baseUrl}/${userId}`);
+    const result = await response.json();
 
     return result.user;
-}
+};
 
-export async function create(userData) {
+export const create = async (userData) => {
     const { country, city, street, streetNumber, ...data } = userData;
     data.address = {
         country,
         city,
         street,
-        streetNumber
-    }
+        streetNumber,
+    };
 
     const response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'content-type': 'application/json',
         },
         body: JSON.stringify(data)
-    })
+    });
 
     const result = await response.json();
 
     return result.user;
-}
+};
 
-export async function remove(userId) {
+export const remove = async (userId) => {
     const response = await fetch(`${baseUrl}/${userId}`, {
         method: 'DELETE'
     });
@@ -44,4 +44,26 @@ export async function remove(userId) {
     const result = await response.json();
 
     return result;
-}
+};
+
+export const update = async (userId, userData) => {
+    const { country, city, street, streetNumber, ...data } = userData;
+    data.address = {
+        country,
+        city,
+        street,
+        streetNumber,
+    };
+
+    const response = await fetch(`${baseUrl}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    return result.user;
+};

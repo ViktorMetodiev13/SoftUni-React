@@ -1,8 +1,7 @@
-export default function UserDelete({
-    userId,
+export const UserDelete = ({
+    onDelete,
     onClose,
-    onDelete
-}) {
+}) => {
     return (
         <div className="overlay">
             <div className="backdrop"></div>
@@ -30,5 +29,5 @@ export default function UserDelete({
                 </div>
             </div>
         </div>
-    )
-} 
+    );
+};
