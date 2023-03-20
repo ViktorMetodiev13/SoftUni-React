@@ -1,22 +1,26 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import * as userService from "../Services/userService";
 
 import User from "./User";
 import { UserCreate } from "./UserCreate";
+import UserDelete from "./UserDelete";
 import { UserDetails } from "./UserDetails";
 
 export const UserList = ({
   users,
   onUserCreateSubmit,
+  onUserDelete
 }) => {
-  const [showAddUser, setShowAddUser] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [deleteUserId, setDeleteUserId] = useState();
+  const [showAddUser, setShowAddUser] = useState(false);
+  const [showDeleteUser, setShowDeleteUser] = useState(false);
 
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
 
-    setSelectedUser(user)
+    setSelectedUser(user);
   };
 
   const onUserAddClick = () => {
@@ -26,6 +30,7 @@ export const UserList = ({
   const onClose = () => {
     setSelectedUser(null);
     setShowAddUser(false);
+    setShowDeleteUser(null);
   }
 
   const onUserCreateSubmitHandler = (e) => {
@@ -33,10 +38,20 @@ export const UserList = ({
     setShowAddUser(false);
   }
 
+  const onDeleteClick = (userId) => {
+    setShowDeleteUser(userId);
+  }
+
+  const onDeleteHandler = () => {
+    onUserDelete(showDeleteUser);
+    onClose();
+  }
+
   return (
     <>
-      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmit} onUserCreateSubmitHandler={onUserCreateSubmitHandler} />}
       {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
+      {showAddUser && <UserCreate onClose={onClose} onUserCreateSubmit={onUserCreateSubmit} onUserCreateSubmitHandler={onUserCreateSubmitHandler} />}
+      {showDeleteUser && <UserDelete onClose={onClose} onUserDelete={onDeleteHandler} />}
 
       <div className="table-wrapper">
         {/* <!-- Overlap components  -->
@@ -208,7 +223,12 @@ export const UserList = ({
           </thead>
           <tbody>
             {users.map((u) => (
-              <User key={u._id} {...u} onInfoClick={onInfoClick} />
+              <User
+                {...u}
+                key={u._id}
+                onInfoClick={onInfoClick}
+                onDeleteClick={onDeleteClick}
+              />
             ))}
           </tbody>
         </table>
