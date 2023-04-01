@@ -79,13 +79,29 @@ function App() {
 
     const formChangeHandler = (e) => {
 
-        const validateEmail = (email) => {
-            if (String(email).toLowerCase().match(/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/)) {
+        const validateEmail = (input) => {
+            if (String(input).toLowerCase().match(/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/)) {
                 return true;
             } else {
                 return false;
             }
         };
+
+        const validatePhoneNumber = (input) => {
+            if (String(input).match(/^0[1-9]{1}[0-9]{8}$/)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        const validateImageUrl = (input) => {
+            if (String(input).match(/^https?:\/\/.+/)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
         let value = e.target.value;
         if (e.target.name == 'firstName' && value.length < 3 && value.length > 20) {
@@ -96,8 +112,32 @@ function App() {
             setFormErrors(state => ({ ...state, [e.target.name]: 'Last name should be between 3 and 20 characters long!' }))
         }
 
-        if (e.target.name == 'email' && validateEmail(e.target.value)) {
+        if (e.target.name == 'email' && validateEmail(value)) {
             setFormErrors(state => ({ ...state, [e.target.name]: 'ImageUrl is not valid!' }))
+        }
+
+        if (e.target.name == 'phoneNumber' && validatePhoneNumber(value)) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'Phone number is not valid!' }));
+        }
+
+        if (e.target.name == 'imageUrl' && validateImageUrl(value)) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'ImageUrl is not valid!' }))
+        }
+
+        if (e.target.name == 'country' && value.length < 2) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'Country should be at least 2 characters long!' }))
+        }
+
+        if (e.target.name == 'city' && value.length < 3) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'City should be at least 3 characters long!' }))
+        }
+
+        if (e.target.name == 'street' && value.length < 3) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'Street should be at least 3 characters long!' }))
+        }
+
+        if (e.target.name == 'street' && (value < 0 || typeof (value) != Number)) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'Street number should be a positive number!' }))
         }
 
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
