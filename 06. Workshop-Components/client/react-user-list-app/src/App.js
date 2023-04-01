@@ -12,6 +12,15 @@ function App() {
     const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        address: {
+            country: '',
+            city: '',
+            street: '',
+            streetNumber: ''
+        }
     })
     const [users, setUsers] = useState([]);
 
