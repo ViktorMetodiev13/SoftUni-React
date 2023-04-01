@@ -9,6 +9,10 @@ import './App.css';
 import { UserList } from "./components/UserList";
 
 function App() {
+    const [formValues, setFormValues] = useState({
+        firstName: '',
+        lastName: '',
+    })
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -53,6 +57,10 @@ function App() {
         setUsers(state => state.filter(x => x._id !== userId));
     };
 
+    const formChangeHandler = (e) => {
+        setFormValues(state => ({...state, [e.target.name]: e.target.value}));
+    }
+
     return (
         <>
             <Header />
@@ -66,6 +74,8 @@ function App() {
                         onUserCreateSubmit={onUserCreateSubmit}
                         onUserUpdateSubmit={onUserUpdateSubmit}
                         onUserDelete={onUserDelete}
+                        formValues={formValues}
+                        formChangeHandler={formChangeHandler}
                     />
 
                     <div className="pagination position">
