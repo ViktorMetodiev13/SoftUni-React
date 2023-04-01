@@ -19,7 +19,20 @@ function App() {
         city: '',
         street: '',
         streetNumber: ''
+    });
+
+    const [formErrors, setFormErrors] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        imageUrl: '',
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: ''
     })
+
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -65,6 +78,28 @@ function App() {
     };
 
     const formChangeHandler = (e) => {
+
+        const validateEmail = (email) => {
+            if (String(email).toLowerCase().match(/^[A-Za-z0-9_\.]+@[A-Za-z]+\.[A-Za-z]{2,3}$/)) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        let value = e.target.value;
+        if (e.target.name == 'firstName' && value.length < 3 && value.length > 20) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'First name should be between 3 and 20 characters long!' }))
+        }
+
+        if (e.target.name == 'lastName' && value.length < 3 && value.length > 20) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'Last name should be between 3 and 20 characters long!' }))
+        }
+
+        if (e.target.name == 'email' && validateEmail(e.target.value)) {
+            setFormErrors(state => ({ ...state, [e.target.name]: 'ImageUrl is not valid!' }))
+        }
+
         setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
@@ -83,6 +118,7 @@ function App() {
                         onUserDelete={onUserDelete}
                         formValues={formValues}
                         formChangeHandler={formChangeHandler}
+                        formErrors={formErrors}
                     />
 
                     <div className="pagination position">

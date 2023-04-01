@@ -3,7 +3,8 @@ export const UserCreate = ({
     onClose,
     onUserCreateSubmit,
     formValues,
-    formChangeHandler
+    formChangeHandler,
+    formErrors
 }) => {
     return (
         <div className="overlay">

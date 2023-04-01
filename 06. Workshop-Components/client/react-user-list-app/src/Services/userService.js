@@ -38,7 +38,7 @@ export const create = async (userData) => {
 
 export const remove = async (userId) => {
     const response = await fetch(`${baseUrl}/${userId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
     });
 
     const result = await response.json();
