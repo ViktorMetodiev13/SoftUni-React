@@ -15,12 +15,10 @@ function App() {
         email: '',
         phoneNumber: '',
         imageUrl: '',
-        address: {
-            country: '',
-            city: '',
-            street: '',
-            streetNumber: ''
-        }
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: ''
     })
     const [users, setUsers] = useState([]);
 
@@ -67,7 +65,7 @@ function App() {
     };
 
     const formChangeHandler = (e) => {
-        setFormValues(state => ({...state, [e.target.name]: e.target.value}));
+        setFormValues(state => ({ ...state, [e.target.name]: e.target.value }));
     }
 
     return (
