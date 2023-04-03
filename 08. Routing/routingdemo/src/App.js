@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Home from './Components/Home';
-import About from './Components/About';
-import Catalog from './Components/Catalog';
+import { Home } from './components/Home';
+import { About } from './components/About';
+import { Catalog } from './components/Catalog';
 
 function App() {
     return (
@@ -12,6 +12,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/catalog' element={<Catalog />} />
+                    <Route path='*' element={<h1>404 Page Not Found</h1>} />
                 </Routes>
             </header>
         </div>
