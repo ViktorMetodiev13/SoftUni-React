@@ -6,8 +6,8 @@ export const Navigation = () => {
     return (
         <nav className={styles.navigation}>
             <ul>
-                <li><NavLink style={({isActive}) => ({color: isActive? "green" : "white"})} to="/">Home</NavLink></li>
-                <li><NavLink style={({isActive}) => ({color: isActive? "green" : "white"})} to="/">Home</NavLink></li>
+                <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : ''} to="/">Home</NavLink></li>
+                <li><NavLink className={({isActive}) => isActive ? styles['nav-active'] : ''} to="/about">About</NavLink></li>
             </ul>
         </nav>
     )
