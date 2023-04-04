@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import styles from './Navigation.module.css';
 
@@ -6,8 +6,8 @@ export const Navigation = () => {
     return (
         <nav className={styles.navigation}>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
+                <li><NavLink style={({isActive}) => ({color: isActive? "green" : "white"})} to="/">Home</NavLink></li>
+                <li><NavLink style={({isActive}) => ({color: isActive? "green" : "white"})} to="/">Home</NavLink></li>
             </ul>
         </nav>
     )
