@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 import { Header } from "./components/Header/Header";
 import { Login } from "./components/Login/Login";
@@ -13,12 +13,23 @@ import * as gameService from "./services/gameService";
 function App() {
     const [games, setGames] = useState([]);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         gameService.getAll()
             .then(result => {
                 setGames(result);
             })
     }, []);
+
+    const onCreateGameSubmit = async (data) => {
+        const newGame = await gameService.create(data);
+        console.log(newGame);
+
+        setGames(state => ([ ...state, newGame ]));
+
+        navigate('/catalog')
+    }
 
     return (
         <div id="box">
@@ -28,7 +39,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/catalog" element={<Catalog games={games} />} />
-                    <Route path="/create-game" element={<CreateGame />} />
+                    <Route path="/create-game" element={<CreateGame onCreateGameSubmit={onCreateGameSubmit} />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Routes>
