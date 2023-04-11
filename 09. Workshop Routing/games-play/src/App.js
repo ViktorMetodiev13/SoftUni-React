@@ -24,7 +24,6 @@ function App() {
 
     const onCreateGameSubmit = async (data) => {
         const newGame = await gameService.create(data);
-        console.log(newGame);
 
         setGames(state => ([ ...state, newGame ]));
 
