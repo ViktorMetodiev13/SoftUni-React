@@ -11,7 +11,7 @@ export const request = async (method, url, data) => {
 
             options.body = JSON.stringify(data);
         }
-    } 
+    }
 
     const response = await fetch(url, options);
 
