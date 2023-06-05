@@ -1,3 +1,7 @@
+# React Calculator
+
+- This is a basic calculator with all functionalities which a normal one has
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
