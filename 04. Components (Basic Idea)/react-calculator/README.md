@@ -1,7 +1,16 @@
-# React Calculator
+# React Calculator - mini Project
 
 - This is a basic calculator with all functionalities which a normal one has
 
+# Technologies
+
+* Client
+
+  * React: 18.2.0
+  * HTML5
+  * CSS3
+
+# How to start it? Here is a guide from the official
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
