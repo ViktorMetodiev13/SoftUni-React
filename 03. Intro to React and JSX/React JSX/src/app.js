@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(rootElement);
 const headerElement = (
     <div>
         <header className="header-container">
-            <h1 className="heading">First React App<h1>
+            <h1 className="heading">My First React App<h1>
             <h2>Slogan here</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis consequuntur architecto dolorum sit quidem tenetur doloremque aspernatur reprehenderit ratione sed!</p>
         </header>
