@@ -12,6 +12,7 @@ const headerElement = (
             <h1 className="heading">My First React App<h1>
             <h2>Slogan here</h2>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis consequuntur architecto dolorum sit quidem tenetur doloremque aspernatur reprehenderit ratione sed!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis consequuntur architecto dolorum sit quidem tenetur doloremque aspernatur reprehenderit ratione sed!</p>
         </header>
 
         <button>Click</button>
