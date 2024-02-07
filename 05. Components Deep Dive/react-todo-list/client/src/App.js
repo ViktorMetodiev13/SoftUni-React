@@ -13,6 +13,7 @@ function App() {
       .then((data) => {
         const result = Object.keys(data).map((id) => ({ id, ...data[id] }));
         setTodos(result);
+        setIsLoading(false);
       });
   }, []);
 
@@ -26,8 +27,8 @@ function App() {
 
   const onTodoAdd = () => {
     const lastId = Number(todos[todos.length - 1].id);
-    const text = prompt('Task name:');
-    const newTask = { id: lastId - 1, text, isCompleted: false};
+    const text = prompt("Task name:");
+    const newTask = { id: lastId - 1, text, isCompleted: false };
 
     setTodos((state) => [newTask, ...state]);
   };
@@ -47,14 +48,13 @@ function App() {
           </div>
 
           <div className="table-wrapper">
-            {isLoading
-                ? <Loading />
-                : <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
-            }
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
+            )}
 
             <TodoList todos={todos} toggleTodoStatus={toggleTodoStatus} />
-
-
           </div>
         </section>
       </main>
