@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as userService from './services/userService';
 
 import { Header } from "./components/Header.js";
@@ -9,10 +9,12 @@ import { UserList } from "./components/Userlist.js";
 import { Pagination } from "./components/Pagination.js";
 
 function App() {
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         userService.getAll()
             .then(users => {
-
+                setUsers(users)
             })
             .catch(err => {
                 console.log('Error ' + err);
@@ -26,7 +28,7 @@ function App() {
       <main className="main">
         <section className="card users-container">
           <Search />
-          <UserList />
+          <UserList users={users}/>
           <button className="btn-add btn">Add new user</button>
           <Pagination />
         </section>
