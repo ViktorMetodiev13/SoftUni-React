@@ -60,7 +60,7 @@ export const User = ({
             ></path>
           </svg>
         </button>
-        <button className="btn info-btn" title="Info" onClick={() => onInfoClick(_id)}>
+        <button className="btn info-btn" title="Info">
           <svg
             aria-hidden="true"
             focusable="false"

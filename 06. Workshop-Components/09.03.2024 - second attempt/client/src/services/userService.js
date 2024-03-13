@@ -14,4 +14,8 @@ export const getOne = async (userId) => {
     const user = data.user;
 
     return user;
-}
+};
+
+// export const deleteUser = async (userId) => {
+//     const result = await fetch(`${baseUrl}/${userId}`);
+// };

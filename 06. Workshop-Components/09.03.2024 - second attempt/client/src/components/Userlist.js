@@ -3,9 +3,11 @@ import { useState } from "react";
 import * as userService from "../services/userService";
 import { User } from "./User";
 import { UserDetails } from "./UserDetails";
+import { UserCreate } from "./UserCreate";
 
 export const UserList = ({ users }) => {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showAddUser, setShowAddUser] = useState(false);
 
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
@@ -15,11 +17,17 @@ export const UserList = ({ users }) => {
 
   const onClose = () => {
     setSelectedUser(null);
+    setShowAddUser(false);
   };
+
+  const onUserAddClick = () => {
+    setShowAddUser(true);
+  }
 
   return (
     <>
       {selectedUser && <UserDetails {...selectedUser} onClose={onClose}/>}
+      {showAddUser && <UserCreate onClose={onClose}/>}
       <div className="table-wrapper">
         {/* Overlap components 
 
@@ -187,6 +195,8 @@ export const UserList = ({ users }) => {
           </tbody>
         </table>
       </div>
+
+      <button className="btn-add btn" onClick={onUserAddClick}>Add new user</button>
     </>
   );
 };
