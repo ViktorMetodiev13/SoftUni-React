@@ -1,4 +1,10 @@
-export const User = (
+const formatDate = (input) => {
+  const date = new Date(input);
+
+  return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+export const User = ({
     _id,
     firstName,
     lastName,
@@ -6,7 +12,7 @@ export const User = (
     imageUrl,
     createdAt,
     phoneNumber,
-) => {
+}) => {
   return (
     <tr>
       <td>
@@ -20,7 +26,7 @@ export const User = (
       <td>{lastName}</td>
       <td>{email}</td>
       <td>{phoneNumber}</td>
-      <td>{createdAt}</td>
+      <td>{formatDate(createdAt)}</td>
 
       <td className="actions">
         <button className="btn edit-btn" title="Edit">

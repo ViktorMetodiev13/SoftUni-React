@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import * as userService from './services/userService';
+import * as userService from './Services/userService';
 
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { Search } from "./components/Search";
+import { Header } from "./Components/Header";
+import { Footer } from "./Components/Footer";
+import { Search } from "./Components/Search";
 import './App.css';
-import { UserList } from "./components/UserList";
+import { UserList } from "./Components/UserList";
 
 function App() {
     const [formValues, setFormValues] = useState({

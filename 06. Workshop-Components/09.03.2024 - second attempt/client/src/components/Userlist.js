@@ -1,8 +1,6 @@
 import { User } from "./User";
 
-export const UserList = (
-    users,
-) => {
+export const UserList = ({ users }) => {
   return (
     <div className="table-wrapper">
       {/* Overlap components 
@@ -165,7 +163,7 @@ export const UserList = (
           </tr>
         </thead>
         <tbody>
-          {users.map(u => <User key={u._id} {...u}/>)}
+            {users.map(u => <User key={u._id} {...u}/>)}
         </tbody>
       </table>
     </div>
