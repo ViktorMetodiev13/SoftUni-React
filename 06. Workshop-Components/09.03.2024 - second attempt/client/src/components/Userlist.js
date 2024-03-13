@@ -1,6 +1,8 @@
 import { User } from "./User";
 
-export const UserList = ({ users }) => {
+export const UserList = ({ 
+    users 
+}) => {
   return (
     <div className="table-wrapper">
       {/* Overlap components 
