@@ -1,8 +1,4 @@
-const formatDate = (input) => {
-  const date = new Date(input);
-
-  return date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-}
+import { formatDate } from "../utils/dateUtils";
 
 export const User = ({
     _id,
@@ -12,6 +8,7 @@ export const User = ({
     imageUrl,
     createdAt,
     phoneNumber,
+    onInfoClick
 }) => {
   return (
     <tr>
@@ -63,7 +60,7 @@ export const User = ({
             ></path>
           </svg>
         </button>
-        <button className="btn info-btn" title="Info">
+        <button className="btn info-btn" title="Info" onClick={() => onInfoClick(_id)}>
           <svg
             aria-hidden="true"
             focusable="false"
