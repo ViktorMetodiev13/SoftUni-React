@@ -10,8 +10,6 @@ export const UserList = ({ users }) => {
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
 
-    console.log(user);
-
     setSelectedUser(user);
   };
 

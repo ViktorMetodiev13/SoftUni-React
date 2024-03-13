@@ -41,7 +41,7 @@ export const UserDetails = ({
             <div className="image-container">
               <img
                 src={imageUrl}
-                alt=""
+                alt={`${firstName} ${lastName}`}
                 className="image"
               />
             </div>

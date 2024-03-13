@@ -9,9 +9,9 @@ export const getAll = async () => {
 
 export const getOne = async (userId) => {
     const response = await fetch(`${baseUrl}/${userId}`);
-    const user = await response.json();
+    const data = await response.json();
 
-    const userData = user.user;
+    const user = data.user;
 
-    return userData;
+    return user;
 }

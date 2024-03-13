@@ -27,7 +27,9 @@ function App() {
         <section className="card users-container">
           <Search />
           <UserList users={users} />
+
           <button className="btn-add btn">Add new user</button>
+          
           <Pagination />
         </section>
       </main>
