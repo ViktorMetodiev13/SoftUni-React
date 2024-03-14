@@ -54,17 +54,18 @@ export const UserList = ({
   //   setUpdateUserMenu(true);
   // }
 
-  const count = 0;
+  let count = 0;
 
   const getCount = async () => {
-    const response = fetch('http://localhost:3005/api/users');
+    const response = fetch("http://localhost:3005/api/users");
     const result = await response.json();
 
     count = result.count;
-  }
+  };
 
   return (
     <>
+      {count === 0 && <Spinner />}
       {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
       {showAddUser && (
         <UserCreate
@@ -75,6 +76,8 @@ export const UserList = ({
       {showDeleteUserMenu && (
         <UserDelete onClose={onClose} onUserDeleteSubmit={onUserDeleteSubmit} />
       )}
+
+
       <div className="table-wrapper">
         <table className="table">
           <thead>
@@ -185,8 +188,6 @@ export const UserList = ({
           </tbody>
         </table>
       </div>
-
-      {count === 0 ? <Spinner /> : null}
 
       <button className="btn-add btn" onClick={onUserAddClick}>
         Add new user

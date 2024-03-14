@@ -7,7 +7,6 @@ import { Search } from "./components/Search.js";
 import "./App.css";
 import { UserList } from "./components/Userlist.js";
 import { Pagination } from "./components/Pagination.js";
-import { Spinner } from "./components/Spinner.js";
 
 function App() {
   const [users, setUsers] = useState([]);
