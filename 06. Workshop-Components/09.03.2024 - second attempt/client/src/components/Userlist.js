@@ -5,7 +5,10 @@ import { User } from "./User";
 import { UserDetails } from "./UserDetails";
 import { UserCreate } from "./UserCreate";
 
-export const UserList = ({ users }) => {
+export const UserList = ({ 
+    users, 
+    onUserCreateSubmit 
+}) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showAddUser, setShowAddUser] = useState(false);
 
@@ -22,12 +25,23 @@ export const UserList = ({ users }) => {
 
   const onUserAddClick = () => {
     setShowAddUser(true);
-  }
+  };
+
+  const onUserCreateSubmitHandler = (e) => {
+    onUserCreateSubmit(e);
+    setShowAddUser(false);
+  };
 
   return (
     <>
-      {selectedUser && <UserDetails {...selectedUser} onClose={onClose}/>}
-      {showAddUser && <UserCreate onClose={onClose}/>}
+      {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
+      {showAddUser && (
+        <UserCreate
+          onClose={onClose}
+          onUserCreateSubmit={onUserCreateSubmit}
+          onUserCreateSubmitHandler={onUserCreateSubmitHandler}
+        />
+      )}
       <div className="table-wrapper">
         {/* Overlap components 
 
@@ -190,13 +204,19 @@ export const UserList = ({ users }) => {
           </thead>
           <tbody>
             {users.map((u) => (
-              <User key={u._id} {...u} onInfoClick={onInfoClick} />
+                <User 
+                    {...u} 
+                    key={u._id} 
+                    onInfoClick={onInfoClick} 
+                />
             ))}
           </tbody>
         </table>
       </div>
 
-      <button className="btn-add btn" onClick={onUserAddClick}>Add new user</button>
+      <button className="btn-add btn" onClick={onUserAddClick}>
+        Add new user
+      </button>
     </>
   );
 };

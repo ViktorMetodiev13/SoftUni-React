@@ -19,6 +19,17 @@ function App() {
       });
   }, []);
 
+  const onUserCreateSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+
+    const createdUser = await userService.create(data);
+
+    setUsers(state => [...state, createdUser]);
+  }
+
   return (
     <>
       <Header />
@@ -27,7 +38,7 @@ function App() {
         <section className="card users-container">
           <Search />
           
-          <UserList users={users} />
+          <UserList users={users} onUserCreateSubmit={onUserCreateSubmit}/>
 
           <Pagination />
         </section>
