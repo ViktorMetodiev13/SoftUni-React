@@ -5,14 +5,17 @@ import { User } from "./User";
 import { UserDetails } from "./UserDetails";
 import { UserCreate } from "./UserCreate";
 import { UserDelete } from "./UserDelete";
+import { Spinner } from "./Spinner";
 
-export const UserList = ({ 
-    users, 
-    onUserCreateSubmit,
-    onDelete
+export const UserList = ({
+  users,
+  onUserCreateSubmit,
+  onDelete,
+  onUserUpdate,
 }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [deletedUserId, setDeletedUserId] = useState(null);
+  // const [updateUserMenu, setUpdateUserMenu] = useState(true);
   const [showDeleteUserMenu, setShowDeleteUserMenu] = useState(false);
   const [showAddUser, setShowAddUser] = useState(false);
 
@@ -40,11 +43,24 @@ export const UserList = ({
   const onUserDeleteClick = (userId) => {
     setDeletedUserId(userId);
     setShowDeleteUserMenu(true);
-  }
+  };
 
   const onUserDeleteSubmit = () => {
     onDelete(deletedUserId);
     onClose();
+  };
+
+  // const onUserUpdateClick = () => {
+  //   setUpdateUserMenu(true);
+  // }
+
+  const count = 0;
+
+  const getCount = async () => {
+    const response = fetch('http://localhost:3005/api/users');
+    const result = await response.json();
+
+    count = result.count;
   }
 
   return (
@@ -56,70 +72,10 @@ export const UserList = ({
           onUserCreateSubmit={onUserCreateSubmitHandler}
         />
       )}
-      {showDeleteUserMenu && <UserDelete onClose={onClose} onUserDeleteSubmit={onUserDeleteSubmit}/>}
+      {showDeleteUserMenu && (
+        <UserDelete onClose={onClose} onUserDeleteSubmit={onUserDeleteSubmit} />
+      )}
       <div className="table-wrapper">
-        {/* Overlap components 
-
-      <div className="loading-shade">
-        Loading spinner 
-        <div className="spinner"></div>
-        No users added yet
-        <div className="table-overlap">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="triangle-exclamation"
-            className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path
-              fill="currentColor"
-              d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-            ></path>
-          </svg>
-          <h2>There is no users yet.</h2>
-        </div>
-        <div className="table-overlap">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="triangle-exclamation"
-            className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path
-              fill="currentColor"
-              d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-            ></path>
-          </svg>
-          <h2>Sorry, we couldn't find what you're looking for.</h2>
-        </div>
-        <div className="table-overlap">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="triangle-exclamation"
-            className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path
-              fill="currentColor"
-              d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-            ></path>
-          </svg>
-          <h2>Failed to fetch</h2>
-        </div>
-      </div> */}
-
         <table className="table">
           <thead>
             <tr>
@@ -219,16 +175,18 @@ export const UserList = ({
           </thead>
           <tbody>
             {users.map((u) => (
-                <User 
-                    {...u} 
-                    key={u._id} 
-                    onInfoClick={onInfoClick} 
-                    onUserDeleteClick={onUserDeleteClick}
-                />
+              <User
+                {...u}
+                key={u._id}
+                onInfoClick={onInfoClick}
+                onUserDeleteClick={onUserDeleteClick}
+              />
             ))}
           </tbody>
         </table>
       </div>
+
+      {count === 0 ? <Spinner /> : null}
 
       <button className="btn-add btn" onClick={onUserAddClick}>
         Add new user

@@ -7,6 +7,7 @@ import { Search } from "./components/Search.js";
 import "./App.css";
 import { UserList } from "./components/Userlist.js";
 import { Pagination } from "./components/Pagination.js";
+import { Spinner } from "./components/Spinner.js";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -34,7 +35,7 @@ function App() {
   const onDelete = async (userId) => {
     await userService.remove(userId);
 
-    setUsers(state => state.filter(x => x._id !== userId));
+    setUsers((state) => state.filter((x) => x._id !== userId));
   };
 
   return (
@@ -44,13 +45,7 @@ function App() {
       <main className="main">
         <section className="card users-container">
           <Search />
-
-          <UserList
-            users={users}
-            onUserCreateSubmit={onUserCreateSubmit}
-            onDelete={onDelete}
-          />
-
+          {users && <UserList users={users} onUserCreateSubmit={onUserCreateSubmit} onDelete={onDelete} />}
           <Pagination />
         </section>
       </main>
