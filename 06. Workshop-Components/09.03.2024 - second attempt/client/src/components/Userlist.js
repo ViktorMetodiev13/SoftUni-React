@@ -65,7 +65,7 @@ export const UserList = ({
 
   return (
     <>
-      {count === 0 && <Spinner />}
+      {/* {count === 0 && <Spinner />} */}
       {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
       {showAddUser && (
         <UserCreate
