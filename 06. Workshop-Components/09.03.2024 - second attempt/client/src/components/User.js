@@ -8,7 +8,8 @@ export const User = ({
 	imageUrl,
 	createdAt,
 	phoneNumber,
-	onInfoClick
+	onInfoClick,
+	onUserDeleteClick
 }) => {
   return (
 	<tr>
@@ -43,7 +44,7 @@ export const User = ({
 			></path>
 		  </svg>
 		</button>
-		<button className="btn delete-btn" title="Delete">
+		<button className="btn delete-btn" title="Delete" onClick={() => onUserDeleteClick(_id)}>
 		  <svg
 			aria-hidden="true"
 			focusable="false"

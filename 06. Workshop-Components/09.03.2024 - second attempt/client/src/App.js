@@ -12,7 +12,8 @@ function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    userService.getAll()
+    userService
+      .getAll()
       .then(setUsers)
       .catch((err) => {
         console.log("Error" + err);
@@ -27,8 +28,14 @@ function App() {
 
     const createdUser = await userService.create(data);
 
-    setUsers(state => [...state, createdUser]);
-};
+    setUsers((state) => [...state, createdUser]);
+  };
+
+  const onDelete = async (userId) => {
+    await userService.remove(userId);
+
+    setUsers(state => state.filter(x => x._id !== userId));
+  };
 
   return (
     <>
@@ -37,8 +44,12 @@ function App() {
       <main className="main">
         <section className="card users-container">
           <Search />
-          
-          <UserList users={users} onUserCreateSubmit={onUserCreateSubmit}/>
+
+          <UserList
+            users={users}
+            onUserCreateSubmit={onUserCreateSubmit}
+            onDelete={onDelete}
+          />
 
           <Pagination />
         </section>

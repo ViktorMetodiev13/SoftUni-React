@@ -4,12 +4,16 @@ import * as userService from "../services/userService";
 import { User } from "./User";
 import { UserDetails } from "./UserDetails";
 import { UserCreate } from "./UserCreate";
+import { UserDelete } from "./UserDelete";
 
 export const UserList = ({ 
     users, 
-    onUserCreateSubmit 
+    onUserCreateSubmit,
+    onDelete
 }) => {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [deletedUserId, setDeletedUserId] = useState(null);
+  const [showDeleteUserMenu, setShowDeleteUserMenu] = useState(false);
   const [showAddUser, setShowAddUser] = useState(false);
 
   const onInfoClick = async (userId) => {
@@ -21,6 +25,7 @@ export const UserList = ({
   const onClose = () => {
     setSelectedUser(null);
     setShowAddUser(false);
+    setShowDeleteUserMenu(false);
   };
 
   const onUserAddClick = () => {
@@ -32,6 +37,16 @@ export const UserList = ({
     setShowAddUser(false);
   };
 
+  const onUserDeleteClick = (userId) => {
+    setDeletedUserId(userId);
+    setShowDeleteUserMenu(true);
+  }
+
+  const onUserDeleteSubmit = () => {
+    onDelete(deletedUserId);
+    onClose();
+  }
+
   return (
     <>
       {selectedUser && <UserDetails {...selectedUser} onClose={onClose} />}
@@ -41,6 +56,7 @@ export const UserList = ({
           onUserCreateSubmit={onUserCreateSubmitHandler}
         />
       )}
+      {showDeleteUserMenu && <UserDelete onClose={onClose} onUserDeleteSubmit={onUserDeleteSubmit}/>}
       <div className="table-wrapper">
         {/* Overlap components 
 
@@ -207,6 +223,7 @@ export const UserList = ({
                     {...u} 
                     key={u._id} 
                     onInfoClick={onInfoClick} 
+                    onUserDeleteClick={onUserDeleteClick}
                 />
             ))}
           </tbody>
