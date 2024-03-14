@@ -28,7 +28,7 @@ function App() {
     const createdUser = await userService.create(data);
 
     setUsers(state => [...state, createdUser]);
-  }
+};
 
   return (
     <>

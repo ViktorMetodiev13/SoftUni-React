@@ -38,8 +38,7 @@ export const UserList = ({
       {showAddUser && (
         <UserCreate
           onClose={onClose}
-          onUserCreateSubmit={onUserCreateSubmit}
-          onUserCreateSubmitHandler={onUserCreateSubmitHandler}
+          onUserCreateSubmit={onUserCreateSubmitHandler}
         />
       )}
       <div className="table-wrapper">

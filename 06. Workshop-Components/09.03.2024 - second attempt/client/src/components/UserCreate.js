@@ -143,7 +143,7 @@ export const UserCreate = ({
               </div>
             </div>
             <div id="form-actions">
-              <button id="action-save" className="btn" type="submit" >
+              <button id="action-save" className="btn" type="submit" onClick={onClose}>
                 Save
               </button>
               <button id="action-cancel" className="btn" type="button" onClick={onClose}>
