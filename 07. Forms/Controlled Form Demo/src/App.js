@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [username, setUsername] = useState("Pesho");
   const [age, setAge] = useState(0);
+  const [occupation, setOccupation] = useState("engineering");
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,6 +16,7 @@ function App() {
 
     console.log(username);
     console.log(age);
+    console.log(occupation);
   }
 
   function onChangeHandlerUsername(e) {
@@ -23,6 +25,10 @@ function App() {
 
   function onChangeHandlerAge(e) {
     setAge(e.target.value);
+  }
+
+  function onChangeHandlerOccupation(e) {
+    setOccupation(e.target.value);
   }
 
   return (
@@ -40,14 +46,28 @@ function App() {
         </div>
 
         <div>
-            <label htmlFor="age">Age</label>
-            <input
+          <label htmlFor="age">Age</label>
+          <input
             type="text"
             name="age"
             id="age"
             value={age}
             onChange={onChangeHandlerAge}
           />
+        </div>
+
+        <div>
+          <label htmlFor="occupation">Occupation</label>
+          <select
+            name="occupation"
+            id="occupation"
+            value={occupation}
+            onChange={onChangeHandlerOccupation}
+          >
+            <option value="it">IT</option>
+            <option value="engineering">Engineering</option>
+            <option value="medicine">Medicine</option>
+          </select>
         </div>
 
         <div>
