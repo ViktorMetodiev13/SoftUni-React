@@ -10,13 +10,21 @@ import { Pagination } from "./components/Pagination.js";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [formValues, setFormValue] = useState({
+    firstName: '',
+    lastName: '',
+  });
+  const [formErrors, setFormErrors] = useState({
+    firstName: '',
+    lastName: '',
+  });
 
   useEffect(() => {
     userService
       .getAll()
       .then(setUsers)
       .catch((err) => {
-        console.log("Error" + err);
+        console.log("Error " + err);
       });
   }, []);
 
@@ -37,6 +45,38 @@ function App() {
     setUsers((state) => state.filter((x) => x._id !== userId));
   };
 
+  const formChangeHandler = (e) => {
+    const value = e.target.value;
+    const errors = {};
+
+    if (e.target.name === 'firstName' && (value.length < 3 || value.length > 20)) {
+        errors.firstName = 'First name should be between 3 and 20 characters long';
+    }
+
+    if (e.target.name === 'lastName' && (value.length < 3 || value.length > 20)) {
+        errors.lastName = 'Last name should be between 3 and 20 characters long';
+    }
+
+    setFormErrors(errors);
+
+    setFormValue(state => ({...state, [e.target.name]: e.target.value}));
+  };
+
+  const formValidate = (e) => {
+    const value = e.target.value;
+    const errors = {};
+
+    if (e.target.name === 'firstName' && (value.length < 3 || value.length > 20)) {
+        errors.firstName = 'First name should be between 3 and 20 characters long';
+    }
+
+    if (e.target.name === 'lastName' && (value.length < 3 || value.length > 20)) {
+        errors.lastName = 'Last name should be between 3 and 20 characters long';
+    }
+
+    setFormErrors(errors);
+  };
+
   return (
     <>
       <Header />
@@ -44,7 +84,15 @@ function App() {
       <main className="main">
         <section className="card users-container">
           <Search />
-          {users && <UserList users={users} onUserCreateSubmit={onUserCreateSubmit} onDelete={onDelete} />}
+          <UserList 
+            users={users}
+            onUserCreateSubmit={onUserCreateSubmit}
+            onDelete={onDelete}
+            formValues={formValues}
+            formChangeHandler={formChangeHandler}
+            formErrors={formErrors}
+            formValidate={formValidate}
+        />
           <Pagination />
         </section>
       </main>

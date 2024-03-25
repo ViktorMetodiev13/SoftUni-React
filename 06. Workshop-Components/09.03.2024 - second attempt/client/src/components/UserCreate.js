@@ -1,6 +1,10 @@
 export const UserCreate = ({
-    onClose,
-    onUserCreateSubmit,
+  onClose,
+  onUserCreateSubmit,
+  formValues,
+  formChangeHandler,
+  formErrors,
+  formValidate
 }) => {
   return (
     <div className="overlay">
@@ -35,11 +39,18 @@ export const UserCreate = ({
                   <span>
                     <i className="fa-solid fa-user"></i>
                   </span>
-                  <input id="firstName" name="firstName" type="text" />
+                  <input
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    value={formValues.firsName}
+                    onChange={formChangeHandler}
+                    onBlur={formValidate}
+                  />
                 </div>
-                <p className="form-error">
-                  First name should be at least 3 characters long!
-                </p>
+                {formErrors.firstName && (
+                  <p className="form-error">{formErrors.firstName}</p>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="lastName">Last name</label>
@@ -47,11 +58,18 @@ export const UserCreate = ({
                   <span>
                     <i className="fa-solid fa-user"></i>
                   </span>
-                  <input id="lastName" name="lastName" type="text" />
+                  <input
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    value={formValues.lastName}
+                    onChange={formChangeHandler}
+                    onBlur={formValidate}
+                  />
                 </div>
-                <p className="form-error">
-                  Last name should be at least 3 characters long!
-                </p>
+                {formErrors.lastName && (
+                  <p className="form-error">{formErrors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -146,7 +164,12 @@ export const UserCreate = ({
               <button id="action-save" className="btn" type="submit">
                 Save
               </button>
-              <button id="action-cancel" className="btn" type="button" onClick={onClose}>
+              <button
+                id="action-cancel"
+                className="btn"
+                type="button"
+                onClick={onClose}
+              >
                 Cancel
               </button>
             </div>

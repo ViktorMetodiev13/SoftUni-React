@@ -12,6 +12,10 @@ export const UserList = ({
   onUserCreateSubmit,
   onDelete,
   onUserUpdate,
+  formValues,
+  formChangeHandler,
+  formErrors,
+  formValidate
 }) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [deletedUserId, setDeletedUserId] = useState(null);
@@ -71,12 +75,15 @@ export const UserList = ({
         <UserCreate
           onClose={onClose}
           onUserCreateSubmit={onUserCreateSubmitHandler}
+          formValues={formValues}
+          formChangeHandler={formChangeHandler}
+          formErrors={formErrors}
+          formValidate={formValidate}
         />
       )}
       {showDeleteUserMenu && (
         <UserDelete onClose={onClose} onUserDeleteSubmit={onUserDeleteSubmit} />
       )}
-
 
       <div className="table-wrapper">
         <table className="table">
