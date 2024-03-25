@@ -4,7 +4,7 @@ export const UserCreate = ({
   formValues,
   formChangeHandler,
   formErrors,
-  formValidate
+  formValidate,
 }) => {
   return (
     <div className="overlay">
@@ -80,9 +80,18 @@ export const UserCreate = ({
                   <span>
                     <i className="fa-solid fa-envelope"></i>
                   </span>
-                  <input id="email" name="email" type="text" />
+                  <input
+                    id="email"
+                    name="email"
+                    type="text"
+                    value={formValues.email}
+                    onChange={formChangeHandler}
+                    onBlur={formValidate}
+                  />
                 </div>
-                <p className="form-error">Email is not valid!</p>
+                {formErrors.email && (
+                  <p className="form-error">{formErrors.email}</p>
+                )}
               </div>
               <div className="form-group">
                 <label htmlFor="phoneNumber">Phone number</label>
